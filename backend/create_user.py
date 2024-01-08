@@ -20,3 +20,5 @@ def create_user():
 
     # Print de exito
     print(f"Usuario {list(dic.values())[0]} creado.")
+
+create_user()
