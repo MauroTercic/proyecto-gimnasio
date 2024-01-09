@@ -32,13 +32,19 @@ class User:
 
     # Método que toma al usuario y lo introduce en la base de datos, esta hecho de esta manera para evitar ataques de sql-injection
     def commit_user(self):
-        cursor.execute("""INSERT INTO usuarios (usuario, clave, nombre, apellido, peso, masa, grasa, 
-                       cintura, brazo, pierna, pecho, pecho_respirado, brazo_trabado, altura, edad) VALUES
-                        (:usuario, :clave, :nombre, :apellido, :peso, :masa, :grasa, :cintura, :brazo, :pierna, :pecho,
-                        :pecho_respirado, :brazo_trabado, :altura, :edad);""",
-                       {'usuario': self.usuario, 'clave': self.clave, 'nombre': self.nombre, 'apellido': self.apellido, 'peso': self.peso, 'masa':self.masa,
-                        'grasa': self.grasa, 'cintura': self.cintura, 'brazo': self.brazo, 'pierna': self.pierna, 'pecho': self.pecho, 'pecho_respirado': self.pecho_respirado,
-                        'brazo_trabado': self.brazo_trabado, 'altura':self.altura, 'edad':self.edad})
+        try:
+            cursor.execute("""INSERT INTO usuarios (usuario, clave, nombre, apellido, peso, masa, grasa, 
+                        cintura, brazo, pierna, pecho, pecho_respirado, brazo_trabado, altura, edad) VALUES
+                            (:usuario, :clave, :nombre, :apellido, :peso, :masa, :grasa, :cintura, :brazo, :pierna, :pecho,
+                            :pecho_respirado, :brazo_trabado, :altura, :edad);""",
+                        {'usuario': self.usuario, 'clave': self.clave, 'nombre': self.nombre, 'apellido': self.apellido, 'peso': self.peso, 'masa':self.masa,
+                            'grasa': self.grasa, 'cintura': self.cintura, 'brazo': self.brazo, 'pierna': self.pierna, 'pecho': self.pecho, 'pecho_respirado': self.pecho_respirado,
+                            'brazo_trabado': self.brazo_trabado, 'altura':self.altura, 'edad':self.edad})
+            # Print de exito
+            print(f"El usuario {self.usuario} ha sido creado exitosamente.")
+        except sqlite3.IntegrityError:
+            print("El usuario ya existe.")
+            return False
         
         # Para guardar los cambios en la base de datos
         connection.commit()

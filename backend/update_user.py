@@ -15,4 +15,3 @@ def update_user(user):
     # Elegir que se quiere actualizar 
 
 
-update_user("vivaperon")

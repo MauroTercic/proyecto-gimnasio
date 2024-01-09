@@ -12,13 +12,16 @@ def delete_user(user):
     cursor.execute(f"SELECT usuario FROM usuarios WHERE usuario='{user}'")
 
     usuario = cursor.fetchone()[0]
-    print(f"¿Seguro que quieres borrar este usuario? {usuario}")
+    print(f"¿Quieres borrar este usuario? {usuario}")
 
+    # Ese input va a ser cambiado por el input del front
     if input("Si/No: ").lower() == "si":
-        cursor.execute(f"DELETE FROM usuarios WHERE usuario = '{user}'")
-        print(f"Usuario {user} correctamente eliminado.")
-    
+        if input("¿Esta realmente seguro, los cambios son irreversibles?\nSi/No: ").lower() == "si":
+            cursor.execute(f"DELETE FROM usuarios WHERE usuario = '{user}'")
+            print(f"Usuario {user} correctamente eliminado.")
+        
     connection.commit()
     connection.close()
 
 
+delete_user("3")
