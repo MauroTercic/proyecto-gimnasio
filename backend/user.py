@@ -30,19 +30,19 @@ class User:
         self.altura = float(altura) if altura != "" else 0
         self.edad = int(edad) if edad != "" else 0
 
-    # Método que toma al usuario y lo introduce en la base de datos
+    # Método que toma al usuario y lo introduce en la base de datos, esta hecho de esta manera para evitar ataques de sql-injection
     def commit_user(self):
-        cursor.execute(f"""INSERT INTO usuarios (usuario, clave, nombre, apellido, peso, masa, grasa, 
-                       cintura, brazo, pierna, pecho, pecho_respirado, brazo_trabado, altura, edad)
-                       VALUES ("{self.usuario}", "{self.clave}", "{self.nombre}", "{self.apellido}", {self.peso}, {self.masa},
-                       {self.grasa}, {self.cintura}, {self.brazo}, {self.pierna}, {self.pecho}, {self.pecho_respirado}, {self.brazo_trabado},
-                       {self.altura}, {self.edad});""")
+        cursor.execute("""INSERT INTO usuarios (usuario, clave, nombre, apellido, peso, masa, grasa, 
+                       cintura, brazo, pierna, pecho, pecho_respirado, brazo_trabado, altura, edad) VALUES
+                        (:usuario, :clave, :nombre, :apellido, :peso, :masa, :grasa, :cintura, :brazo, :pierna, :pecho,
+                        :pecho_respirado, :brazo_trabado, :altura, :edad);""",
+                       {'usuario': self.usuario, 'clave': self.clave, 'nombre': self.nombre, 'apellido': self.apellido, 'peso': self.peso, 'masa':self.masa,
+                        'grasa': self.grasa, 'cintura': self.cintura, 'brazo': self.brazo, 'pierna': self.pierna, 'pecho': self.pecho, 'pecho_respirado': self.pecho_respirado,
+                        'brazo_trabado': self.brazo_trabado, 'altura':self.altura, 'edad':self.edad})
         
         # Para guardar los cambios en la base de datos
         connection.commit()
         connection.close()
-
-
 
 """
 Ejemplos de creacion de usuarios manual
