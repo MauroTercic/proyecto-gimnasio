@@ -1,7 +1,6 @@
 from user import User
 
 
-
 def create_user():
     # Crear lista con todos los atributos
     lst = ["usuario", "clave", "nombre", "apellido", "peso", "masa", "grasa", "cintura",
@@ -18,6 +17,5 @@ def create_user():
                 dic[lst[10]], dic[lst[11]], dic[lst[12]], dic[lst[13]], dic[lst[14]])
     
     usuario.commit_user()
-
 
 create_user()
