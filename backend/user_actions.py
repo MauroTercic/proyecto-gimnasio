@@ -8,6 +8,7 @@ cursor = connection.cursor()
 
 class UserActions:
 
+    # Este seria el usuario loggeado
     def __init__(self, username):
         cursor.execute("SELECT usuario FROM usuarios WHERE usuario=:usuario", {'usuario':username})
         self.username = cursor.fetchone()[0]

@@ -32,6 +32,7 @@ class User:
 
     # Método que toma al usuario y lo introduce en la base de datos, esta hecho de esta manera para evitar ataques de sql-injection
     def commit_user(self):
+        # El try-except es para evitar usuarios repetidos
         try:
             cursor.execute("""INSERT INTO usuarios (usuario, clave, nombre, apellido, peso, masa, grasa, 
                         cintura, brazo, pierna, pecho, pecho_respirado, brazo_trabado, altura, edad) VALUES
