@@ -6,5 +6,24 @@
 {% endblock title %}
     
 {% block content %}
-    <h1>XD</h1>
+<div class="col-md-6 offset-md-3">
+
+  {% if user.is_authenticated %}
+    <h1>xd</h1>
+  {% else %}
+    <h1>Login</h1>
+    <form method="POST" action="{% url 'home' %}">
+        {% csrf_token %}
+        <form>
+            <div class="mb-3">
+              <input type="text" class="form-control" name="username", placeholder="Tu usuario" required>
+            </div>
+            <div class="mb-3">
+              <input type="password" class="form-control" name="password", placeholder="Tu contraseña" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Ingresar</button>
+          </form>
+    </form>
+</div>
+{% endif %}
 {% endblock content %}
