@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Tus datos</title>
+{% endblock%}
+
+
+
+
+{% block content %}
+<br>
+    <div>
+        <table class="table table-striped-columns table-hover">
+            <thead>
+                <tr>
+                    <th scope="row">Usuario</th>
+                    <th scope="row">Nombre</th>
+                    <th scope="row">Apellido</th>
+                    <th scope="row">Peso</th>
+                    <th scope="row">Masa</th>
+                    <th scope="row">Grasa</th>
+                    <th scope="row">Cintura</th>
+                    <th scope="row">Brazo</th>
+                    <th scope="row">Pierna</th>
+                    <th scope="row">Pecho</th>
+                    <th scope="row">Pecho respirado</th>
+                    <th scope="row">Brazo trabado</th>
+                    <th scope="row">Altura</th>
+                    <th scope="row">Edad</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    {% if datos%}
+                    {% for dato in datos %}
+                        <td>{{ dato.usuario }}</td>
+                        <td>{{ dato.nombre }}</td>
+                        <td>{{ dato.apellido }}</td>
+                        <td>{{ dato.peso }}</td>
+                        <td>{{ dato.masa }}</td>
+                        <td>{{ dato.grasa }}</td>
+                        <td>{{ dato.cintura }}</td>
+                        <td>{{ dato.brazo }}</td>
+                        <td>{{ dato.pierna }}</td>
+                        <td>{{ dato.pecho }}</td>
+                        <td>{{ dato.pecho_respirado }}</td>
+                        <td>{{ dato.brazo_trabado }}</td>
+                        <td>{{ dato.altura }}</td>
+                        <td>{{ dato.edad }}</td>
+                    {% endfor %}
+                {% endif %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock  %}
+    
+
