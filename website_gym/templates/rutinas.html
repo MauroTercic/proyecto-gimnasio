@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+
+{% block title%}
+    <title>Rutinas</title>
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="dropdown">
+    {% if datos_rutinas %}
+    <h1>{{ datos_rutinas.grupo_a_ejercitar }}</h1>
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{{ datos_rutinas.dias }}</button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="{% url 'rutina' 1 %}">Lunes</a></li>
+      <li><a class="dropdown-item" href="{% url 'rutina' 2 %}">Martes</a></li>
+      <li><a class="dropdown-item" href="{% url 'rutina' 3 %}">Miercoles</a></li>
+      <li><a class="dropdown-item" href="{% url 'rutina' 4 %}">Jueves</a></li>
+      <li><a class="dropdown-item" href="{% url 'rutina' 5 %}">Viernes</a></li>
+    </ul>
+    {% endif %}
+</div>
+
+
+<br>
+    <div>
+        <table class="table table-striped-columns table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Ejercicio</th>
+                    <th scope="col">Repeticiones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if datos_ejercicios %}
+                    <tr>
+                        {% for dato in datos_ejercicios %}
+                        <tr>
+                            <td>{{ dato.ejercicio }}</td>
+                            <td>{{ dato.repeticiones }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tr>
+
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</br>
+
+
+{% endblock %}
+
+
+

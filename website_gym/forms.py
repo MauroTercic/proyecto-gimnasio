@@ -1,10 +1,10 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
+from .models import DatosPersonales
 
 class SignUpForm(UserCreationForm):
     email = forms.EmailField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Tu email'}))
-
 
     class Meta:
         model = User
@@ -29,3 +29,23 @@ class SignUpForm(UserCreationForm):
         self.fields['password2'].help_text = '<span class="form-text text-muted"><small>Enter the same password as before, for verification.</small></span>'	
 
 
+
+class EditarDatos(forms.ModelForm):
+    nombre = forms.CharField(required=False, widget=forms.widgets.TextInput(attrs={"class":"form-control"}), label="Nombre")
+    apellido = forms.CharField(required=False, widget=forms.widgets.TextInput(attrs={"class":"form-control"}), label="Apellido")
+    peso = forms.FloatField(required=False, widget=forms.widgets.NumberInput(attrs={"class":"form-control", 'step': "0.01"}), label="Peso")
+    masa = forms.FloatField(required=False, widget=forms.widgets.NumberInput(attrs={"class":"form-control", 'step': "0.01"}), label="Masa")
+    grasa = forms.FloatField(required=False, widget=forms.widgets.NumberInput(attrs={"class":"form-control", 'step': "0.01"}), label="Grasa")
+    cintura = forms.FloatField(required=False, widget=forms.widgets.NumberInput(attrs={"class":"form-control", 'step': "0.01"}), label="Cintura")
+    brazo = forms.FloatField(required=False, widget=forms.widgets.NumberInput(attrs={"class":"form-control", 'step': "0.01"}), label="Brazo")
+    pierna = forms.FloatField(required=False, widget=forms.widgets.NumberInput(attrs={"class":"form-control", 'step': "0.01"}), label="Pierna")
+    pecho = forms.FloatField(required=False, widget=forms.widgets.NumberInput(attrs={"class":"form-control", 'step': "0.01"}), label="Pecho")
+    pecho_respirado = forms.FloatField(required=False, widget=forms.widgets.NumberInput(attrs={"class":"form-control", 'step': "0.01"}), label="Pecho respirado")
+    brazo_trabado = forms.FloatField(required=False, widget=forms.widgets.NumberInput(attrs={"class":"form-control", 'step': "0.01"}), label="Brazo trabado")
+    altura = forms.FloatField(required=False, widget=forms.widgets.NumberInput(attrs={"class":"form-control", 'step': "0.01"}), label="Altura")
+    edad = forms.IntegerField(required=False, widget=forms.widgets.NumberInput(attrs={"class":"form-control"}), label="Edad")
+
+
+    class Meta:
+        model = DatosPersonales
+        exclude = ('usuario', 'created_at',)

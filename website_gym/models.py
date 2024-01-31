@@ -26,3 +26,19 @@ class DatosPersonales(models.Model):
 
     def __str__(self):
         return self.usuario
+
+
+class Rutina(models.Model):
+    dias = models.CharField(max_length=50)
+    grupo_a_ejercitar = models.CharField(max_length=50)
+
+
+    
+
+class Ejercicio(models.Model):
+    ejercicio = models.CharField(max_length=50)
+    repeticiones = models.CharField(max_length=50)
+    grupo_id = models.ForeignKey(Rutina, on_delete=models.CASCADE)
+
+
+
