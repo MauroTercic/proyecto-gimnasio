@@ -8,8 +8,7 @@
 {% block content %}
 
 <div class="col-md-6 offset-md-3">
-    <h1>Registrarse</h1>
-    <br/>
+    <p class="h1">Registrarse:</p>    <br/>
     <form method="POST" action="">
         {% csrf_token %}
         {% if form.errors %}
@@ -25,8 +24,7 @@
 		{% endif %}
         {{ form.as_p }}
 
-        <br/>
-        <button type="submit" class="btn btn-secondary">Registrarse</button>
+        <button type="submit" class="btn btn-primary">Registrarse</button>
     </form>
 </div>
 {% endblock %}

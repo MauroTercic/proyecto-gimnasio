@@ -6,12 +6,14 @@ from .models import DatosPersonales, Rutina, Ejercicio
 import datetime as dt
 
 
-# Create your views here.
+
 def home(request):
+    # El form para logear en home page
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
 
+        # Si el usuari es real loggearlo
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
@@ -58,6 +60,7 @@ def register_user(request):
 
 
 def ver_datos(request):
+    # Solo si el usuario esta loggeado
     if request.user.is_authenticated:
         datos = DatosPersonales.objects.filter(usuario=request.user)
         return render(request, "ver_datos.html", {"datos":datos})
@@ -65,6 +68,7 @@ def ver_datos(request):
 
 
 def editar_datos(request):
+    # Solo si el usuario esta loggeado
     if request.user.is_authenticated:
         datos = DatosPersonales.objects.get(usuario=request.user)
         form = EditarDatos(request.POST or None, instance=datos)
@@ -79,9 +83,11 @@ def editar_datos(request):
 
 
 def rutinas(request):
+    # Solo si el usuario esta loggeado
     if request.user.is_authenticated:
-
+        # Tomar el dia de la fecha para mostrar primero esa rutina
         date = dt.datetime.today().weekday()
+        # Como solo hay rutinas en los dias habiles chequear que sea menos que 5
         if date < 5:
             semana = {0:"Lunes", 1:"Martes", 2:"Miercoles", 3:"Jueves", 4:"Viernes",}
             dia = semana[date]
@@ -98,3 +104,7 @@ def rutina(request, pk):
     datos_rutinas = Rutina.objects.get(id=pk)
     datos_ejercicios = Ejercicio.objects.filter(grupo_id=datos_rutinas.id)
     return render(request, "rutina.html", {"datos_rutinas":datos_rutinas, "datos_ejercicios":datos_ejercicios})
+
+
+def sobre_nosotros(request):
+    return render(request, "sobre_nosotros.html", {})

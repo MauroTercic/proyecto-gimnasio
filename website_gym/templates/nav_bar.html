@@ -6,7 +6,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link" href="#">Sobre nosotros</a>
+          <a class="nav-link" href="{% url 'sobre_nosotros' %}">Sobre nosotros</a>
           {% if user.is_authenticated %}
             <a class="nav-link" href="{% url 'ver_datos' %}">Tus datos</a>
             <a class="nav-link" href="{% url 'rutinas' %}">Rutinas</a>

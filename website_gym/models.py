@@ -28,10 +28,11 @@ class DatosPersonales(models.Model):
         return self.usuario
 
 
+
+
 class Rutina(models.Model):
     dias = models.CharField(max_length=50)
     grupo_a_ejercitar = models.CharField(max_length=50)
-
 
     
 
