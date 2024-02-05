@@ -28,9 +28,10 @@ def home(request):
 
 
 def logout_user(request):
-    logout(request)
-    messages.success(request, "Cerraste sesión.")
-    return redirect("home")
+    if request.user.is_authenticated:
+        logout(request)
+        messages.success(request, "Cerraste sesión.")
+        return redirect("home")
 
 
 
@@ -87,7 +88,7 @@ def rutinas(request):
     if request.user.is_authenticated:
         # Tomar el dia de la fecha para mostrar primero esa rutina
         date = dt.datetime.today().weekday()
-        # Como solo hay rutinas en los dias habiles chequear que sea menos que 5
+        # Como solo hay rutinas para los dias habiles chequear que sea entre 1 (lunes) y 5 (viernes)
         if date < 5:
             semana = {0:"Lunes", 1:"Martes", 2:"Miercoles", 3:"Jueves", 4:"Viernes",}
             dia = semana[date]
@@ -95,9 +96,11 @@ def rutinas(request):
             datos_ejercicios = Ejercicio.objects.filter(grupo_id=datos_rutinas.id)
 
             return render(request, "rutinas.html", {"datos_rutinas":datos_rutinas, "datos_ejercicios":datos_ejercicios})
-            
-        messages.success(request, "No hay rutinas para los fines de semana.")
-        return redirect("home")
+        
+        # Si es fin de semana mostrar la rutina del lunes
+        datos_rutinas_lunes = Rutina.objects.get(dias="Lunes")
+        datos_ejercicios_lunes = Ejercicio.objects.filter(grupo_id=datos_rutinas_lunes.id)
+        return render(request, "rutinas.html", {"datos_rutinas":datos_rutinas_lunes, "datos_ejercicios":datos_ejercicios_lunes})
     
 
 def rutina(request, pk):

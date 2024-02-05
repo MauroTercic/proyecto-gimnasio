@@ -11,7 +11,7 @@
   {% if user.is_authenticated %}
     <h1>xd</h1>
   {% else %}
-    <p class="h1">Ingresar:</p><br>
+    <h1 style="font-size: 45px;"> Ingresar: </h1>
     <form method="POST" action="{% url 'home' %}">
         {% csrf_token %}
         <form>
@@ -25,5 +25,5 @@
           </form>
     </form>
 </div>
-{% endif %}
+  {% endif %}
 {% endblock content %}
