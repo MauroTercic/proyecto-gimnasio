@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class DatosPersonales(models.Model):
-    #usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     usuario = models.CharField(max_length=50)
     nombre = models.CharField(max_length=50, null=True)
     apellido = models.CharField(max_length=50, null=True)
@@ -34,7 +33,6 @@ class Rutina(models.Model):
     dias = models.CharField(max_length=50)
     grupo_a_ejercitar = models.CharField(max_length=50)
 
-    
 
 class Ejercicio(models.Model):
     ejercicio = models.CharField(max_length=50)
@@ -42,4 +40,16 @@ class Ejercicio(models.Model):
     grupo_id = models.ForeignKey(Rutina, on_delete=models.CASCADE)
 
 
+class UsuarioRutinas(models.Model):
+    usuario = models.CharField(max_length=50)
 
+class TusRutinas(models.Model):
+    dias = models.CharField(max_length=50)
+    grupo_a_ejercitar = models.CharField(max_length=50, default=None, null=True)
+    grupo_id = models.ForeignKey(UsuarioRutinas, on_delete=models.CASCADE)
+
+
+class TusEjercicios(models.Model):
+    ejercicio = models.CharField(max_length=50, default=None)
+    repeticiones = models.CharField(max_length=50, default=None)
+    grupo_id = models.ForeignKey(TusRutinas, on_delete=models.CASCADE)

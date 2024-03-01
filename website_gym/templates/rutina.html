@@ -9,13 +9,13 @@
 <div class="dropdown">
     <h1>{{ datos_rutinas.grupo_a_ejercitar }}</h1>
     {% if datos_rutinas %}
-    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{{ datos_rutinas.dias }}</button>
+    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{{ datos_rutinas.dias }}</button>
     <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="{% url 'rutina' 1 %}">Lunes</a></li>
-      <li><a class="dropdown-item" href="{% url 'rutina' 2 %}">Martes</a></li>
-      <li><a class="dropdown-item" href="{% url 'rutina' 3 %}">Miercoles</a></li>
-      <li><a class="dropdown-item" href="{% url 'rutina' 4 %}">Jueves</a></li>
-      <li><a class="dropdown-item" href="{% url 'rutina' 5 %}">Viernes</a></li>
+        <li><a class="dropdown-item" href="{% url 'rutina_todos' 1 %}">Lunes</a></li>
+        <li><a class="dropdown-item" href="{% url 'rutina_todos' 2 %}">Martes</a></li>
+        <li><a class="dropdown-item" href="{% url 'rutina_todos' 3 %}">Miercoles</a></li>
+        <li><a class="dropdown-item" href="{% url 'rutina_todos' 4 %}">Jueves</a></li>
+        <li><a class="dropdown-item" href="{% url 'rutina_todos' 5 %}">Viernes</a></li>
     </ul>
     {% endif %}
 </div>

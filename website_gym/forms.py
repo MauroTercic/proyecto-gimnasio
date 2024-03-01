@@ -49,3 +49,12 @@ class EditarDatos(forms.ModelForm):
     class Meta:
         model = DatosPersonales
         exclude = ('usuario', 'created_at',)
+
+
+class EditarRutinas(forms.ModelForm):
+    dia = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Dia'}))
+    grupo_a_ejercitar = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Grupo a ejercitar'}))
+
+class EditarEjercicios(forms.ModelForm):
+    ejercicios = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Ejercicio'}))
+    repeticiones = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Repeticiones'}))

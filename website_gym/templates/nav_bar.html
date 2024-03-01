@@ -9,7 +9,8 @@
           <a class="nav-link" href="{% url 'sobre_nosotros' %}">Sobre nosotros</a>
           {% if user.is_authenticated %}
             <a class="nav-link" href="{% url 'ver_datos' %}">Tus datos</a>
-            <a class="nav-link" href="{% url 'rutinas' %}">Rutinas</a>
+            <a class="nav-link" href="{% url 'rutinas_todos' %}">Rutinas para todos</a>
+            <a class="nav-link" href="{% url 'tus_rutinas' %}">Tus rutinas</a>
             <a class="nav-link" href="{% url 'logout' %}">Salir</a>
           {% else %}
             <a class="nav-link" href="{% url 'register' %}">Registrarse</a>

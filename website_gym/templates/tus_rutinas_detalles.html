@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+
+{% block title%}
+    <title>Tus rutinas</title>
+{% endblock %}
+
+{% block content %}
+
+{% if datos_rutinas %}
+<h1>{{ datos_rutinas.grupo_a_ejercitar }}</h1>
+<div class="containter">
+    <div class="row">
+        <div class="dropdown col-md-auto">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{{ datos_rutinas.dias }}</button>
+            <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'tus_rutinas_detalle' 1 %}">Lunes</a></li>
+            <li><a class="dropdown-item" href="{% url 'tus_rutinas_detalle' 2 %}">Martes</a></li>
+            <li><a class="dropdown-item" href="{% url 'tus_rutinas_detalle' 3 %}">Miercoles</a></li>
+            <li><a class="dropdown-item" href="{% url 'tus_rutinas_detalle' 4 %}">Jueves</a></li>
+            <li><a class="dropdown-item" href="{% url 'tus_rutinas_detalle' 5 %}">Viernes</a></li>
+            </ul>
+            {% endif %}
+        </div>
+        <div class="col-md-auto">
+            <a class="btn btn-primary" href="#" role="button">Editar tus rutinas</a>
+        </div>
+    </div>
+</div>
+
+<br>
+    <div>
+        <table class="table table-striped-columns table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Ejercicio</th>
+                    <th scope="col">Repeticiones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if datos_ejercicios %}
+                    <tr>
+                        {% for dato in datos_ejercicios %}
+                        <tr>
+                            <td>{{ dato.ejercicio }}</td>
+                            <td>{{ dato.repeticiones }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tr>
+
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</br>
+<a class="btn btn-primary" href="{% url 'editar_tus_rutinas_detalles' %}" role="button">Editar tus ejercicios</a>
+{% endblock %}
